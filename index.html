@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>幽影櫻 | System Online</title>
+    <!-- Keep Tailwind CDN for simplicity in this setup -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Orbitron (Tech/Sci-Fi) and Zen Maru Gothic (Anime/Rounded) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&family=Zen+Maru+Gothic:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background-color: #0b0f17;
+        font-family: 'Zen Maru Gothic', sans-serif;
+      }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #0b0f17;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #00bfff;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #ff00ff;
+      }
+      
+      /* Moving Scanline Animation */
+      @keyframes scanline-move {
+        0% { background-position: 0 0; }
+        100% { background-position: 0 100vh; }
+      }
+
+      /* Subtle Flicker Animation for Glitch Effect */
+      @keyframes flicker {
+        0% { opacity: 0.3; }
+        5% { opacity: 0.2; }
+        10% { opacity: 0.4; }
+        15% { opacity: 0.3; }
+        50% { opacity: 0.3; }
+        55% { opacity: 0.25; }
+        60% { opacity: 0.3; }
+        100% { opacity: 0.3; }
+      }
+
+      /* CRT Scanline Effect */
+      .scanlines::before {
+        content: " ";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        /* Much fainter lines (0.08 opacity) for clarity */
+        background: linear-gradient(
+          to bottom,
+          rgba(255, 255, 255, 0) 50%,
+          rgba(0, 0, 0, 0.08) 50%
+        );
+        background-size: 100% 4px;
+        z-index: 10;
+        pointer-events: none;
+        /* Apply movement and flicker */
+        animation: scanline-move 15s linear infinite, flicker 3s infinite;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "framer-motion": "https://aistudiocdn.com/framer-motion@^12.23.24",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0",
+    "vite": "https://aistudiocdn.com/vite@^7.2.2",
+    "@vitejs/plugin-react": "https://aistudiocdn.com/@vitejs/plugin-react@^5.1.1"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
